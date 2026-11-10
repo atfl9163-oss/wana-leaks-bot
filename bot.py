@@ -8,7 +8,7 @@ bot = telebot.TeleBot(TOKEN)
 # رابط قناتك الحقيقي على اليوتيوب
 CHANNEL_URL = "https://www.youtube.com/@mphil073"
 
-# نظام تخزين مرن وقابل للتحديث الذاتي
+# قاعدة بيانات ديناميكية قابلة للتحديث الذاتي
 database = {
     "current_leak": "WANA100K",
     "sensitivity": "• عام: 100\n• نقطة حمراء: 95\n• عدسة 2: 92\n• عدسة 4: 94",
@@ -48,8 +48,20 @@ def callback_query(call):
         bot.answer_callback_query(call.id)
         bot.send_message(call.message.chat.id, f"🎁 **الكود السري الحالي:** `{database['current_leak']}`\n\nاستخدمه فوراً في اللعبة يا أسطورة! 🔥", parse_mode="Markdown")
 
+# أمر لتحديث الحساسية مباشرة من المحادثة (مثال: /setleak CODE)
+@bot.message_handler(commands=['update_leak'])
+def update_leak(message):
+    # استخراج الكود الجديد بعد الأمر
+    parts = message.text.split(maxsplit=1)
+    if len(parts) > 1:
+        database['current_leak'] = parts[1]
+        bot.reply_to(message, f"✅ تم تحديث كود التسريب بنجاح إلى: `{database['current_leak']}`", parse_mode="Markdown")
+    else:
+        bot.reply_to(message, "⚠️ يرجى كتابة الكود بعد الأمر هكذا:\n`/update_leak WANA200K`", parse_mode="Markdown")
+
 # تشغيل النظام الذكي
 print("Smart Bot system is running...")
 bot.infinity_polling()
+
 
 
