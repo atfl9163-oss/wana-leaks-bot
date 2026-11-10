@@ -1,8 +1,8 @@
 import telebot
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-# توكن البوت الخاص بك المدمج رسمياً
-TOKEN = "8603950722:AAFk4KBu9jlnDLANua5Y1Gjq4wzjNKINUq8"
+# التوكن الجديد والمحدث رسمياً لبوتك Wana Bot
+TOKEN = "8942151607:AAHXlZNJFzc1UBySZUWPLtD2b8SbvJcxnEo"
 bot = telebot.TeleBot(TOKEN)
 
 # رابط قناتك على اليوتيوب
@@ -33,7 +33,7 @@ def callback_query(call):
     
     elif call.data == "roblox":
         bot.answer_callback_query(call.id)
-        bot.send_message(call.message.chat.id, "⌨️ **رابط ماب الكيبورد الأخير:**\nابحثي عنه في روبلوكس باسم (Keyboard Escape) وجربي التحدي معنا!", parse_mode="Markdown")
+        bot.send_message(call.message.chat.id, "⌨️ **رابط ماب الكيبورد الأخير:**\nابحث عنه في روبلوكس باسم (Keyboard Escape) وجرب التحدي معنا!", parse_mode="Markdown")
     
     elif call.data == "suggestion":
         bot.answer_callback_query(call.id)
@@ -41,4 +41,5 @@ def callback_query(call):
 
 # تشغيل البوت
 print("Bot is running...")
-bot.polling()
+bot.infinity_polling()
+
